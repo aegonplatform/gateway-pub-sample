@@ -27,7 +27,7 @@ module.exports = class Gateway {
     return crypto
       .createHmac('sha512', this._secret)
       .update(JSON.stringify({
-        endpoint, key: this._key, search,
+        cmd: endpoint, key: this._key, search,
       }))
       .digest('hex');
   }
@@ -59,6 +59,7 @@ module.exports = class Gateway {
   }
 
   async getNewAddress(ticker, customer) {
+    ticker = ticker.toLowerCase();
     const email = get(customer, 'email');
     customer = get(customer, '__data', customer);
     customer = JSON.stringify(pick(customer, [
@@ -70,6 +71,7 @@ module.exports = class Gateway {
   }
 
   async createWithdrawal(ticker, address, amount, destTag = '', customer) {
+    ticker = ticker.toLowerCase();
     const email = get(customer, 'email');
     customer = get(customer, '__data', customer);
     customer = JSON.stringify(pick(customer, [
