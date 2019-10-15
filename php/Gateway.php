@@ -13,7 +13,7 @@ class Gateway {
     private function getURI() : string {
         $parse = (object) parse_url($this->uri);
         $uri = "{$parse->scheme}://{$parse->host}";
-        if ($parse->port) $uri .= ":{$parse->port}";
+        if (isset($parse->port)) $uri .= ":{$parse->port}";
         return $uri; 
     }
 
