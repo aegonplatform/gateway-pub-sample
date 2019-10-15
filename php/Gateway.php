@@ -1,4 +1,5 @@
 <?php
+namespace GatewayPub;
 
 class Gateway {
 

@@ -1,5 +1,8 @@
 <?php
-require_once('Gateway.php');
+require __DIR__ . '/vendor/autoload.php';
+
+use GatewayPub\Gateway;
+
 $source = 'my-app'; // Name my platform
 $uri = 'http://localhost:3002'; // My gateway URI
 $key = '4YvMUp6xP7PEVXqW3NyZm9LBkmycJ9cu'; // My key
