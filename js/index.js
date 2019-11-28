@@ -1,5 +1,4 @@
 const Gateway = require('./Gateway');
-const source = 'my-app'; // Name my platform
 const uri = 'http://localhost:3002'; // My gateway URI
 const key = '4YvMUp6xP7PEVXqW3NyZm9LBkmycJ9cu'; // My key
 const secret = '3B2PhQoESpk5xVHi49qtl8Jr5WZtS2N7iVuoe9jR8Jg5F7Oh'; // My secret
@@ -11,11 +10,11 @@ const secret = '3B2PhQoESpk5xVHi49qtl8Jr5WZtS2N7iVuoe9jR8Jg5F7Oh'; // My secret
     email: 'test@test.com',
     lang: 'en',
   };
-  const gateway = new Gateway(source, uri, key, secret);
+  const gateway = new Gateway(uri, key, secret);
   let result = await gateway.getNewAddress('BTC', customer);
   console.log('getNewAddress =', result);
   result = await gateway.createWithdrawal(
-    'BTC', '2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE', 0.001, '', customer,
+    'BTC', '2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE', 0.001, '', '', customer,
   );
   console.log('createWithdrawal =', result);
 })()

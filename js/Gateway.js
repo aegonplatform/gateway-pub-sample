@@ -4,14 +4,12 @@ const url = require('url');
 const pick = require('lodash/pick');
 const get = require('lodash/get');
 const set = require('lodash/set');
-const kebabCase = require('lodash/kebabCase');
 const qs = require('querystring');
 const crypto = require('crypto');
 
 module.exports = class Gateway {
 
-  constructor(source, uri, key, secret) {
-    this._source = kebabCase(source);
+  constructor(uri, key, secret) {
     this._uri = uri;
     this._key = key;
     this._secret = secret;
@@ -66,11 +64,11 @@ module.exports = class Gateway {
       'cid', 'name', 'lang',
     ]));
     return this._executeRequest('/api/deposits/getnewaddress', {
-      ticker, source: this._source, email, customer,
+      ticker, email, customer,
     });
   }
 
-  async createWithdrawal(ticker, address, amount, destTag = '', customer) {
+  async createWithdrawal(ticker, address, amount, destTag = '', note = '', customer) {
     ticker = ticker.toLowerCase();
     const email = get(customer, 'email');
     customer = get(customer, '__data', customer);
@@ -78,7 +76,7 @@ module.exports = class Gateway {
       'cid', 'name', 'lang',
     ]));
     return this._executeRequest('/api/withdrawals/createwithdrawal', {
-      ticker, source: this._source, email, address, amount, destTag, customer,
+      ticker, email, address, amount, destTag, note, customer,
     });
   }
 };

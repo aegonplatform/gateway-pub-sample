@@ -3,8 +3,7 @@ namespace GatewayPub;
 
 class Gateway {
 
-    public function __construct($source, $uri, $key, $secret) {
-        $this->source = $source;
+    public function __construct($uri, $key, $secret) {
         $this->uri = $uri;
         $this->key = $key;
         $this->secret = $secret;
@@ -59,7 +58,6 @@ class Gateway {
         }, ARRAY_FILTER_USE_KEY);
         return $this->executeRequest('/api/deposits/getnewaddress', [
             'ticker' => $ticker,
-            'source' => $this->source,
             'email' => $email,
             'customer' => $customer,
         ]);
@@ -67,7 +65,7 @@ class Gateway {
 
     public function createWithdrawal(
         string $ticker, string $address, float $amount, string $destTag = '',
-        array $customer = []
+        string $note = '', array $customer = []
     ) {
         $ticker = strtolower($ticker);
         $email = $customer['email'];
@@ -76,11 +74,11 @@ class Gateway {
         }, ARRAY_FILTER_USE_KEY);
         return $this->executeRequest('/api/withdrawals/createwithdrawal', [
             'ticker' => $ticker,
-            'source' => $this->source,
             'email' => $email,
             'address' => $address,
             'amount' => $amount,
             'destTag' => $destTag,
+            'note' => $note,
             'customer' => $customer,
         ]);
     }
