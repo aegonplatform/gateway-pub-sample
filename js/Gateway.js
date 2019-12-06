@@ -56,7 +56,7 @@ module.exports = class Gateway {
     }
   }
 
-  async getNewAddress(ticker, customer) {
+  async getNewAddress(ticker, fromMaster = false, customer) {
     ticker = ticker.toLowerCase();
     const email = get(customer, 'email');
     customer = get(customer, '__data', customer);
@@ -64,7 +64,7 @@ module.exports = class Gateway {
       'cid', 'name', 'lang',
     ]));
     return this._executeRequest('/api/deposits/getnewaddress', {
-      ticker, email, customer,
+      ticker, email, fromMaster, customer,
     });
   }
 

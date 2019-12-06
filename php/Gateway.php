@@ -50,7 +50,7 @@ class Gateway {
         return json_decode($file, true);
     }
 
-    public function getNewAddress(string $ticker, array $customer = []) : array {
+    public function getNewAddress(string $ticker, bool $fromMaster = false, array $customer = []) : array {
         $ticker = strtolower($ticker);
         $email = $customer['email'];
         $customer = array_filter($customer, function($key) {
@@ -59,6 +59,7 @@ class Gateway {
         return $this->executeRequest('/api/deposits/getnewaddress', [
             'ticker' => $ticker,
             'email' => $email,
+            'fromMaster' => $fromMaster,
             'customer' => $customer,
         ]);
     }

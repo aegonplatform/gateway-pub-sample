@@ -11,7 +11,7 @@ const secret = '3B2PhQoESpk5xVHi49qtl8Jr5WZtS2N7iVuoe9jR8Jg5F7Oh'; // My secret
     lang: 'en',
   };
   const gateway = new Gateway(uri, key, secret);
-  let result = await gateway.getNewAddress('BTC', customer);
+  let result = await gateway.getNewAddress('BTC', false, customer);
   console.log('getNewAddress =', result);
   result = await gateway.createWithdrawal(
     'BTC', '2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE', 0.001, '', '', customer,

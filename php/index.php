@@ -14,7 +14,7 @@ $customer = [
     'lang' => 'en',
 ];
 $gateway = new Gateway($uri, $key, $secret);
-$result = $gateway->getNewAddress('BTC', $customer);
+$result = $gateway->getNewAddress('BTC', false, $customer);
 echo 'getNewAddress = ';
 print_r($result);
 $result = $gateway->createwithdrawal(
