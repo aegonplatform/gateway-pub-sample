@@ -1,0 +1,28 @@
+{
+    "name": "aegonplatform/gateway-pub-sample",
+    "description": "Gateway Pub Sample",
+    "type": "package",
+    "keywords": [
+        "gateway",
+        "pub",
+        "sample"
+    ],
+    "homepage": "https://github.com/aegonplatform/gateway-pub-sample",
+    "license": "MIT",
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "GatewayPub\\": "./"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GatewayPub\\": "./"
+        }
+    },
+    "scripts": {
+        "test": "php -f ./index.php"
+    }
+}
