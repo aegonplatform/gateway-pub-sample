@@ -8,3 +8,17 @@ Aegon Gateway é uma plataforma de pagamento/recebimento de cryptomoedas diretam
 Nossa plataforma fica instalada em sua VPS/Datacenter e interage com o seu sistema em ambiente seguro.
 
 [Quero saber mais!](https://github.com/aegonplatform/gateway-pub-sample/wiki)
+
+## JS Installation
+
+```bash
+npm install @aegonplatfrm/gateway-pub-example
+# or
+yarn add @aegonplatfrm/gateway-pub-example
+```
+
+## PHP Installation
+
+```bash
+composer requrie aegonplatform/gateway-pub-sample
+```
