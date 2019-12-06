@@ -1,6 +1,7 @@
 {
     "name": "aegonplatform/gateway-pub-sample",
     "description": "Gateway Pub Sample",
+    "type": "package",
     "keywords": [
         "gateway",
         "pub",
@@ -13,10 +14,15 @@
     },
     "autoload": {
         "psr-4": {
-            "GatewayPub\\": "./"
+            "GatewayPub\\": "php/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GatewayPub\\": "php/"
         }
     },
     "scripts": {
-        "test": "php -f index.php"
+        "test": "php -f ./php/index.php"
     }
 }
