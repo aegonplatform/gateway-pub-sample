@@ -1,5 +1,5 @@
 {
-  "name": "@aegonplatfrm/gateway-pub-example",
+  "name": "@aegonplatform/gateway-pub-example",
   "version": "1.0.0",
   "description": "Gateway Pub example",
   "main": "js/index.js",
