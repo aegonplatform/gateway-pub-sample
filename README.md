@@ -12,9 +12,9 @@ Nossa plataforma fica instalada em sua VPS/Datacenter e interage com o seu siste
 ## JS Installation
 
 ```bash
-npm install @aegonplatfrm/gateway-pub-example
+npm install @aegonplatform/gateway-pub-example
 # or
-yarn add @aegonplatfrm/gateway-pub-example
+yarn add @aegonplatform/gateway-pub-example
 ```
 
 ## PHP Installation
