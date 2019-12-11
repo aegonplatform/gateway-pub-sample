@@ -1,4 +1,4 @@
-const Gateway = requrie('./Gateway')
+const Gateway = require('./Gateway')
 
 module.exports = {
   Gateway

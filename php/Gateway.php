@@ -16,8 +16,18 @@ class Gateway {
         return $uri; 
     }
 
+    private function getQueryString(array $data) : string {
+        if (isset($data['customer'])) {
+            $data['customer'] = json_encode($data['customer']);
+            $data['customer'] = str_replace('\/', '/', $data['customer']);
+            $data['customer'] = str_replace('\\"', '"', $data['customer']);
+        }
+        $data['fromMaster'] = $data['fromMaster'] === false ? 'false' : 'true';
+        return http_build_query($data);
+    }
+
     private function getSignature(string $endpoint, array $data) : string {
-        $search = urldecode(http_build_query($data));
+        $search = $this->getQueryString($data);
         $message = json_encode([
             'cmd' => $endpoint,
             'key' => $this->key,
@@ -29,9 +39,9 @@ class Gateway {
 
     private function executeRequest(string $endpoint, array $data = []) : array {
         $uri = $this->getURI() . $endpoint;
-        $qs = urldecode(http_build_query($data));
+        $qs = $this->getQueryString($data);
         $now = new \DateTime("now", new \DateTimeZone("UTC"));
-        $timestamp = $now->getTimestamp();
+        $timestamp = $now->getTimestamp() * 1000;
         $signature = $this->getSignature($endpoint, $data);
         $options = [
             'http' => [

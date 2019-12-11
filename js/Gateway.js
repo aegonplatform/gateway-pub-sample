@@ -45,9 +45,8 @@ module.exports = class Gateway {
           'ag-access-timestamp': Date.now(),
         },
       };
-      set(options, 'headers.ag-access-signature', this._getSignature(
-        endpoint, data,
-      ));
+      const signature = this._getSignature(endpoint, data);
+      set(options, 'headers.ag-access-signature', signature);
       return await rp(options);
     } catch (err) {
       const error = get(err, 'error.error');
