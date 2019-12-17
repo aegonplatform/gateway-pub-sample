@@ -22,7 +22,9 @@ class Gateway {
             $data['customer'] = str_replace('\/', '/', $data['customer']);
             $data['customer'] = str_replace('\\"', '"', $data['customer']);
         }
-        $data['fromMaster'] = $data['fromMaster'] === false ? 'false' : 'true';
+        if (isset($data['fromMaster'])) {
+            $data['fromMaster'] = $data['fromMaster'] === false ? 'false' : 'true';
+        }
         return http_build_query($data);
     }
 
