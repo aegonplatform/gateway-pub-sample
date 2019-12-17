@@ -45,6 +45,7 @@ module.exports = class Gateway {
           'ag-access-timestamp': Date.now(),
         },
       };
+      if (uri.includes('https')) set(options, 'rejectUnauthorized', false);
       const signature = this._getSignature(endpoint, data);
       set(options, 'headers.ag-access-signature', signature);
       return await rp(options);
@@ -76,6 +77,18 @@ module.exports = class Gateway {
     ]));
     return this._executeRequest('/api/withdrawals/createwithdrawal', {
       ticker, email, address, amount, destTag, note, customer,
+    });
+  }
+
+  async getFeesList(asset) {
+    return this._executeRequest('/api/fees/list', {
+      asset,
+    });
+  }
+
+  async aegonPurchaseOrder(ticker, email) {
+    return this._executeRequest('/api/deposits/aegonpurchaseorder', {
+      ticker, email,
     });
   }
 };
