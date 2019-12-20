@@ -1,5 +1,10 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+/**
+ * -------------------------------------------
+ * php -f examples/index.php
+ * -------------------------------------------
+ */
+require __DIR__ . '/../vendor/autoload.php';
 
 use GatewayPub\Gateway;
 
