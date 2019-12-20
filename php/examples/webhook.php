@@ -5,7 +5,7 @@
  * -------------------------------------------
  */
 $output = print_r($_GET, TRUE);
-$fp = fopen('examples/log/output.log', 'a');
+$fp = fopen(__DIR__ . '/log/output.log', 'a');
 fwrite($fp, $output);
 fclose($fp);
 

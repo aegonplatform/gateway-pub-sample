@@ -23,6 +23,7 @@
         }
     },
     "scripts": {
-        "test": "php -f ./php/index.php"
+        "test": "php -f php/examples/index.php",
+        "webhook": "php -sS localhost:8080 php/examples/webhook.php"
     }
 }
