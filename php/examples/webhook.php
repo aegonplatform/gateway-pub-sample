@@ -4,8 +4,12 @@
  * php -sS localhost:8080 examples/webhook.php
  * -------------------------------------------
  */
+$pathDir = __DIR__ . '/log/test';
+if (!is_dir($pathDir)) {
+    mkdir($pathDir, 0777, true);
+}
 $output = print_r($_GET, TRUE);
-$fp = fopen(__DIR__ . '/log/output.log', 'a');
+$fp = fopen($pathDir . '/output.log', 'a');
 fwrite($fp, $output);
 fclose($fp);
 
