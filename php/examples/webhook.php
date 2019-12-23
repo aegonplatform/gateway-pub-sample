@@ -8,88 +8,156 @@ $pathDir = __DIR__ . '/log/test';
 if (!is_dir($pathDir)) {
     mkdir($pathDir, 0777, true);
 }
-$output = print_r($_GET, TRUE);
+$qs = '';
+if(isset($_SERVER['QUERY_STRING'])){
+    $qs = $_SERVER['QUERY_STRING'] . PHP_EOL;
+    echo '<strong>' . $qs . '</strong><br />';
+}
+echo '<pre>';
+ob_start();
+var_dump($_GET);
+$output = ob_get_contents();
+ob_end_clean();
+echo $output;
+echo '</pre>';
 $fp = fopen($pathDir . '/output.log', 'a');
-fwrite($fp, $output);
+fwrite($fp, $qs . $output);
 fclose($fp);
 
 /**
  * @see Deposit output - Transaction started on blockchain
  */
-// Array
-// (
-//     [event] => address
-//     [data] => Array
-//         (
-//             [ticker] => btc
-//             [type] => deposit
-//             [status] => blockchain
-//             [amount] => 0.01
-//             [address] => mpMTXspxiLBirbk3pRzd2pHVcG1wYFyFde
-//             [txid] => d0749ed7db36719ac80e71f5063de027842649572e5ec93ba7c4fed5efd46f43
-//             [confirmations] => 0
-//             [checked] => false
-//             [approved] => true
-//             [auto] => true
-//             [created] => 1576881259342
-//             [email] => test@test.com
-//             [applicationId] => 5dfd36798043d51c54c6930e
-//         )
-//     [secret] => pSNx4Dhi
-// )
+//   array(3) {
+//     ["event"]=>
+//     string(11) "address"
+//     ["data"]=>
+//     array(12) {
+//       ["ticker"]=>
+//       string(3) "btc"
+//       ["type"]=>
+//       string(10) "deposit"
+//       ["status"]=>
+//       string(8) "blockchain"
+//       ["amount"]=>
+//       string(5) "0.001"
+//       ["address"]=>
+//       string(35) "2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE"
+//       ["txid"]=>
+//       string(64) "8acba0abfb239e2d9b23952adc374d40a260e2ab0189d638694bc7c06a3ac98e"
+//       ["confirmations"]=>
+//       string(1) "3"
+//       ["fee"]=>
+//       string(11) "-0.00000222"
+//       ["scheduling"]=>
+//       string(13) "1576881386109"
+//       ["created"]=>
+//       string(13) "1576881386112"
+//       ["finished"]=>
+//       string(13) "1576881577239"
+//       ["customer"]=>
+//       array(4) {
+//         ["email"]=>
+//         string(13) "test@test.com"
+//         ["name"]=>
+//         string(4) "Test"
+//         ["lang"]=>
+//         string(2) "en"
+//         ["thumbnail"]=>
+//         string(32) "http://img.images.com/avatar.jpg"
+//       }
+//     }
+//     ["secret"]=>
+//     string(8) "pSNx4Dhi"
+//   }
 
 /**
  * @see Deposit output - Transaction finalized on blockchain
  */
-// Array
-// (
-//     [event] => transaction
-//     [data] => Array
-//         (
-//             [ticker] => btc
-//             [type] => deposit
-//             [status] => finished
-//             [amount] => 0.01
-//             [address] => mpMTXspxiLBirbk3pRzd2pHVcG1wYFyFde
-//             [txid] => d0749ed7db36719ac80e71f5063de027842649572e5ec93ba7c4fed5efd46f43
-//             [confirmations] => 3
-//             [checked] => true
-//             [approved] => true
-//             [auto] => true
-//             [created] => 1576881259342
-//             [finished] => 1576881314280
-//             [email] => test@test.com
-//             [applicationId] => 5dfd36798043d51c54c6930e
-//             [id] => 5dfd4c6b6a9f524db971698e
-//         )
-//     [secret] => pSNx4Dhi
-// )
+//   array(3) {
+//     ["event"]=>
+//     string(11) "transaction"
+//     ["data"]=>
+//     array(12) {
+//       ["ticker"]=>
+//       string(3) "btc"
+//       ["type"]=>
+//       string(10) "deposit"
+//       ["status"]=>
+//       string(8) "finished"
+//       ["amount"]=>
+//       string(5) "0.001"
+//       ["address"]=>
+//       string(35) "2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE"
+//       ["txid"]=>
+//       string(64) "8acba0abfb239e2d9b23952adc374d40a260e2ab0189d638694bc7c06a3ac98e"
+//       ["confirmations"]=>
+//       string(1) "3"
+//       ["fee"]=>
+//       string(11) "-0.00000222"
+//       ["scheduling"]=>
+//       string(13) "1576881386109"
+//       ["created"]=>
+//       string(13) "1576881386112"
+//       ["finished"]=>
+//       string(13) "1576881577239"
+//       ["customer"]=>
+//       array(4) {
+//         ["email"]=>
+//         string(13) "test@test.com"
+//         ["name"]=>
+//         string(4) "Test"
+//         ["lang"]=>
+//         string(2) "en"
+//         ["thumbnail"]=>
+//         string(32) "http://img.images.com/avatar.jpg"
+//       }
+//     }
+//     ["secret"]=>
+//     string(8) "pSNx4Dhi"
+//   }
 
 /**
  * @see Withdrawal output - Transaction finalized on blockchain
  */
-// Array
-// (
-//     [event] => transaction
-//     [data] => Array
-//         (
-//             [ticker] => btc
-//             [type] => withdrawal
-//             [status] => finished
-//             [amount] => 0.001
-//             [address] => 2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE
-//             [txid] => 8acba0abfb239e2d9b23952adc374d40a260e2ab0189d638694bc7c06a3ac98e
-//             [confirmations] => 3
-//             [fee] => -0.00000222
-//             [checked] => true
-//             [approved] => true
-//             [auto] => true
-//             [scheduling] => 1576881386109
-//             [created] => 1576881386112
-//             [finished] => 1576881577239
-//             [email] => test@test.com
-//             [applicationId] => 5dfd36798043d51c54c6930e
-//             [id] => 5dfd4ceac01e0c4a95d1e3cd
-//         )
-//     [secret] => pSNx4Dhi
-// )
+//   array(3) {
+//     ["event"]=>
+//     string(11) "transaction"
+//     ["data"]=>
+//     array(12) {
+//       ["ticker"]=>
+//       string(3) "btc"
+//       ["type"]=>
+//       string(10) "withdrawal"
+//       ["status"]=>
+//       string(8) "finished"
+//       ["amount"]=>
+//       string(5) "0.001"
+//       ["address"]=>
+//       string(35) "2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE"
+//       ["txid"]=>
+//       string(64) "8acba0abfb239e2d9b23952adc374d40a260e2ab0189d638694bc7c06a3ac98e"
+//       ["confirmations"]=>
+//       string(1) "3"
+//       ["fee"]=>
+//       string(11) "-0.00000222"
+//       ["scheduling"]=>
+//       string(13) "1576881386109"
+//       ["created"]=>
+//       string(13) "1576881386112"
+//       ["finished"]=>
+//       string(13) "1576881577239"
+//       ["customer"]=>
+//       array(4) {
+//         ["email"]=>
+//         string(13) "test@test.com"
+//         ["name"]=>
+//         string(4) "Test"
+//         ["lang"]=>
+//         string(2) "en"
+//         ["thumbnail"]=>
+//         string(32) "http://img.images.com/avatar.jpg"
+//       }
+//     }
+//     ["secret"]=>
+//     string(8) "pSNx4Dhi"
+//   }
