@@ -8,7 +8,6 @@ const qs = require('querystring');
 const crypto = require('crypto');
 
 module.exports = class Gateway {
-
   constructor(uri, key, secret) {
     this._uri = uri;
     this._key = key;
@@ -56,7 +55,9 @@ module.exports = class Gateway {
     }
   }
 
-  async getNewAddress(ticker, fromMaster = false, customer) {
+  async getNewAddress(
+    ticker, fromMaster = false, customer, referenceId = '',
+  ) {
     ticker = ticker.toLowerCase();
     const email = get(customer, 'email');
     customer = get(customer, '__data', customer);
@@ -64,11 +65,14 @@ module.exports = class Gateway {
       'cid', 'name', 'lang',
     ]));
     return this._executeRequest('/api/deposits/getnewaddress', {
-      ticker, email, fromMaster, customer,
+      ticker, email, fromMaster, customer, referenceId,
     });
   }
 
-  async createWithdrawal(ticker, address, amount, destTag = '', note = '', customer) {
+  async createWithdrawal(
+    ticker, address, amount, destTag = '', note = '',
+    customer, referenceId = '',
+  ) {
     ticker = ticker.toLowerCase();
     const email = get(customer, 'email');
     customer = get(customer, '__data', customer);
@@ -76,7 +80,7 @@ module.exports = class Gateway {
       'cid', 'name', 'lang',
     ]));
     return this._executeRequest('/api/withdrawals/createwithdrawal', {
-      ticker, email, address, amount, destTag, note, customer,
+      ticker, email, address, amount, destTag, note, customer, referenceId,
     });
   }
 

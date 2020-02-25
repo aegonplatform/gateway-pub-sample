@@ -1,5 +1,5 @@
-const Gateway = require('./Gateway')
+const Gateway = require('./Gateway');
 
 module.exports = {
-  Gateway
-}
+  Gateway,
+};
