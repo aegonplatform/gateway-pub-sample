@@ -1,3 +1,5 @@
 vendor/
 node_modules/
 .DS_Store
+build
+.phpunit.result.cache

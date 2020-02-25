@@ -14,16 +14,20 @@
     },
     "autoload": {
         "psr-4": {
-            "GatewayPub\\": "php/"
+            "GatewayPub\\": "php/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GatewayPub\\": "php/"
+            "GatewayPub\\Test\\": "php/tests"
         }
     },
     "scripts": {
-        "test": "php -f php/examples/index.php",
+        "test": "phpunit",
+        "example": "php -f php/examples/index.php",
         "webhook": "php -sS localhost:8080 php/examples/webhook.php"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8"
     }
 }

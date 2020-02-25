@@ -13,7 +13,7 @@ class Gateway {
         $parse = (object) parse_url($this->uri);
         $uri = "{$parse->scheme}://{$parse->host}";
         if (isset($parse->port)) $uri .= ":{$parse->port}";
-        return $uri; 
+        return $uri;
     }
 
     private function getQueryString(array $data) : string {
@@ -62,7 +62,10 @@ class Gateway {
         return json_decode($file, true);
     }
 
-    public function getNewAddress(string $ticker, bool $fromMaster = false, array $customer = []) : array {
+    public function getNewAddress(
+      string $ticker, bool $fromMaster = false,
+      array $customer = [], string $referenceId = ''
+    ) : array {
         $ticker = strtolower($ticker);
         $email = $customer['email'];
         $customer = array_filter($customer, function($key) {
@@ -73,12 +76,13 @@ class Gateway {
             'email' => $email,
             'fromMaster' => $fromMaster,
             'customer' => $customer,
+            'referenceId' => $referenceId,
         ]);
     }
 
     public function createWithdrawal(
         string $ticker, string $address, float $amount, string $destTag = '',
-        string $note = '', array $customer = []
+        string $note = '', array $customer = [], string $referenceId = ''
     ) {
         $ticker = strtolower($ticker);
         $email = $customer['email'];
@@ -93,6 +97,7 @@ class Gateway {
             'destTag' => $destTag,
             'note' => $note,
             'customer' => $customer,
+            'referenceId' => $referenceId,
         ]);
     }
 }
