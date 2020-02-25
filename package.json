@@ -1,12 +1,12 @@
 {
   "name": "@aegonplatform/gateway-pub-sample",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Gateway Pub example",
   "main": "js/index.js",
   "scripts": {
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
-    "test": "mocha \"js/test/**/*.js\"",
+    "test": "mocha -t 60000 \"js/test/**/*.js\"",
     "posttest": "npm run lint"
   },
   "author": "",

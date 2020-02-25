@@ -1,6 +1,6 @@
 
 const assert = require('chai').assert;
-const Gateway = require('../Gateway');
+const Gateway = require('../');
 
 /**
  * Integration Tests
